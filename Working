@@ -53,7 +53,7 @@ local function teleportToPlayer(playerName)
     if not targetPlayer or not targetPlayer.Character then
         Window:Notify({
             Title = "Error",
-            Description = "Player tidak ditemukan!",
+            Description = "Player not found",
             Duration = 3,
             Type = "Error"
         })
@@ -64,7 +64,7 @@ local function teleportToPlayer(playerName)
     if not targetHRP then
         Window:Notify({
             Title = "Error",
-            Description = "HumanoidRootPart target tidak ditemukan!",
+            Description = "Target HumanoidRootPart not found",
             Duration = 3,
             Type = "Error"
         })
@@ -98,7 +98,7 @@ local function teleportToPlayer(playerName)
     })
 
     task.spawn(function()
-        while currentLoopActive and (tick() - startTime < 7) do
+        while currentLoopActive and (tick() - startTime < 10) do
             if not hrp.Parent or not targetHRP.Parent then 
                 currentLoopActive = false
                 break 
@@ -120,7 +120,7 @@ local function teleportToPlayer(playerName)
             end)
             
             local waitStart = tick()
-            while not completed and currentLoopActive and (tick() - startTime < 7) do
+            while not completed and currentLoopActive and (tick() - startTime < 10) do
                 if tick() - waitStart >= 2.5 then break end
                 task.wait(0.1)
             end
@@ -163,7 +163,7 @@ local PlayerDropdown = TeleportTab:New("Dropdown")({
 -- Button 1: Go to Player
 TeleportTab:New("Button")({
     Title = "Go to Player",
-    Description = "Teleport to selected player (2.5s tween, 7s spam)",
+    Description = "Teleport to selected player (2.5s Teleport, 10s spam)",
     Callback = function()
         if selectedPlayerName and selectedPlayerName ~= "No Players Available" then
             teleportToPlayer(selectedPlayerName)
