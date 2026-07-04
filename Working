@@ -170,7 +170,7 @@ TeleportTab:New("Button")({
         else
             Window:Notify({
                 Title = "Warning",
-                Description = "Pilih player terlebih dahulu!",
+                Description = "Select a player first!",
                 Duration = 3,
                 Type = "Warning"
             })
